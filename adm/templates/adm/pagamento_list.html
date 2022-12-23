@@ -1,0 +1,62 @@
+{% extends 'base_interface.html' %}
+{% block title %}
+Gerenciar Pagamentos
+{% endblock %}
+
+{% block sidebar %}
+{% include 'adm_sidebar.html' %}
+{% endblock %}
+
+{% block content %}
+<h1>Gerenciar Pagamentos</h1>
+<table class="table table-dark table-striped" style="width: 100%;">
+    <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Curso</th>
+          <th scope="col">Professor</th>
+          <th>Aulas</th>
+          <th scope="col">Data</th>
+          <th scope="col">Pago?</th>
+          <th scope="col">Editar</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+{% for pagamento in pagamento_list %}
+    <tr>
+        <th scope="row">{{ pagamento.id }}</th>
+        <td>{{ pagamento.curso.curso }}</td>
+        <td>{{ pagamento.curso.professor_do_curso.usuario_professor.first_name }}</td>
+        <td>{{ pagamento.aulas_no_pacote }}</td>
+        <td>{{ pagamento.data }}</td>
+        <td class="text-center">{% if pagamento.pago %} <i class="fa-solid fa-check"></i> {% else %} <i class="fa-solid fa-x"></i>{% endif %}</td>
+        <td>
+          <a href="{% url 'update_pagamento' pagamento.id %}" class="btn btn-outline-warning btn-sm">
+            <i class="fa-solid fa-pencil"></i>
+        </a> 
+        <a href="{% url 'delete_pagamento' pagamento.id %}" class="btn btn-outline-danger btn-sm">
+            <i class="fa-solid fa-trash"></i>
+        </td>
+    </tr>
+ {% endfor %}
+    </tbody>
+</table>
+<div class="pagination">
+  <span class="step-links">
+      {% if page_obj.has_previous %}
+          <a href="?page=1">&laquo; first</a>
+          <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+      {% endif %}
+
+      <span class="current">
+          Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+      </span>
+
+      {% if page_obj.has_next %}
+          <a href="?page={{ page_obj.next_page_number }}">next</a>
+          <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+      {% endif %}
+  </span>
+</div>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'base_interface.html' %}
+{% block title %}
+Adicionar curso
+{% endblock %}
+
+{% block sidebar %}
+{% include 'adm_sidebar.html' %}
+{% endblock %}
+
+{% block content %}
+<h1>Gerenciar Cursos</h1>
+<table class="table table-dark table-striped" style="width: 100%;">
+    <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Curso</th>
+          <th scope="col">Professor</th>
+          <th scope="col">Aulas registradas</th>
+          <th scope="col">Aulas restantes no pacote</th>
+          <th scope="col">Editar</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+{% for curso in curso_list %}
+    <tr>
+        <th scope="row">1</th>
+        <td>{{ curso.curso }}</td>
+        <td>{{ curso.professor_do_curso.usuario_professor.first_name }}</td>
+        <td>{{ curso.aulas_dadas }}</td>
+        <td>{{ curso.aulas_restantes }}</td>
+        <td>
+          <a href="{% url 'update' curso.id %}" class="btn btn-outline-warning btn-sm">
+            <i class="fa-solid fa-pencil"></i>
+        </a> 
+        <a href="{% url 'delete' curso.id %}" class="btn btn-outline-danger btn-sm">
+            <i class="fa-solid fa-trash"></i>
+        </td>
+    </tr>
+ {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

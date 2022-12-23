@@ -1,0 +1,22 @@
+{% extends 'base_interface.html' %}
+{% block title %}
+Área do Aluno
+{% endblock %}
+
+{% block sidebar %}
+{% include 'alunos_sidebar.html' %}
+{% endblock %}
+
+{% block content %}
+<h1>Home</h1>
+<div class="card">
+    <div class="card-header text-center">
+        Tutorial de navegação
+      </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">Meus Cursos: ver todos os cursos cadastrados na sua conta, assim como a quantidade de aulas registradas e aulas pagas restantes.</li>
+        <li class="list-group-item">Minhas Aulas: ver todas as aulas lançadas na sua conta.</li>
+        <li class="list-group-item">Meus Pagamentos: ver todos os pagamentos lançados pelo administrativo na sua conta (pagos ou não) e a quantidade de aulas referentes a cada pagamento.</li>
+    </ul>
+</div>
+{% endblock %}

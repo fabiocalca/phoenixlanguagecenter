@@ -1,0 +1,24 @@
+{% extends 'base_interface.html' %}
+{% block title %}
+Deletar Empresa
+{% endblock %}
+
+{% block sidebar %}
+{% include 'adm_sidebar.html' %}
+{% endblock %}
+
+{% block content %}
+
+<form method="post">{% csrf_token %}
+     
+ 
+ 
+ 
+    <p>Você tem certeza que deseja deletar "{{ object }}" como empresa?</p>
+     
+     
+     
+     
+        <input type="submit" value="Confirm">
+    </form>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base_interface.html' %}
+{% block title %}
+Ver Presença
+{% endblock %}
+
+{% block sidebar %}
+{% include 'adm_sidebar.html' %}
+{% endblock %}
+
+{% block content %}
+<h1>Ver Presença</h1>
+<table class="table table-dark table-striped" style="width: 100%;">
+    <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Curso</th>
+          <th scope="col">Professor</th>
+          <th scope="col">Data</th>
+          <th scope="col">Presente?</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+{% for aula in aula_list %}
+    <tr>
+        <th scope="row"> {{ aula.id }}</th>
+        <td>{{ aula.curso }}</td>
+        <td>{{ aula.data }}</td>
+        <td>{{ aula.professor.usuario_professor.first_name }}</td>
+        <td class="text-center">{% if aula.presente %} <i class="fa-solid fa-check"></i> {% else %} <i class="fa-solid fa-x"></i>{% endif %}</td>
+    </tr>
+ {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base_interface.html' %}
+{% block title %}
+Gerenciar Empresas
+{% endblock %}
+
+{% block sidebar %}
+{% include 'adm_sidebar.html' %}
+{% endblock %}
+
+{% block content %}
+<h1>Gerenciar Empresas</h1>
+<table class="table table-dark table-striped" style="width: 100%;">
+    <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nome</th>
+          <th scope="col">Editar</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+{% for empresa in empresa_list %}
+    <tr>
+        <th scope="row">{{ empresa.id }}</th>
+        <td>{{ empresa.nome }}</td>
+        <td>
+            <a href="{% url 'update_empresa' empresa.id %}" class="btn btn-outline-warning btn-sm">
+                <i class="fa-solid fa-pencil"></i>
+            </a> 
+            <a href="{% url 'delete_empresa' empresa.id %}" class="btn btn-outline-danger btn-sm">
+                <i class="fa-solid fa-trash"></i>
+            </a>
+        </td>
+    </tr>
+ {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

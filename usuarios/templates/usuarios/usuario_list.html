@@ -1,0 +1,38 @@
+{% extends 'base_interface.html' %}
+{% block title %}
+Gerenciar Usuários
+{% endblock %}
+
+{% block sidebar %}
+{% include 'adm_sidebar.html' %}
+{% endblock %}
+
+{% block content %}
+<h1>Gerenciar Usuários</h1>
+<table class="table table-dark table-striped" style="width: 100%;">
+    <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nome</th>
+          <th scope="col">Editar</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+{% for usuario in usuario_list %}
+    <tr>
+        <th scope="row">{{ usuario.id }}</th>
+        <td>{{ usuario.first_name }} {{ usuario.last_name }}</td>
+        <td>
+            <a href="{% url 'update_usuario' usuario.id %}" class="btn btn-outline-warning btn-sm">
+                <i class="fa-solid fa-pencil"></i>
+            </a> 
+            <a href="{% url 'delete_usuario' usuario.id %}" class="btn btn-outline-danger btn-sm">
+                <i class="fa-solid fa-trash"></i>
+            </a>
+        </td>
+    </tr>
+ {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

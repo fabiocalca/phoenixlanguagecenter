@@ -1,0 +1,38 @@
+{% extends 'base_interface.html' %}
+{% block title %}
+Gerenciar Professores
+{% endblock %}
+
+{% block sidebar %}
+{% include 'adm_sidebar.html' %}
+{% endblock %}
+
+{% block content %}
+<h1>Gerenciar Professores</h1>
+<table class="table table-dark table-striped" style="width: 100%;">
+    <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nome</th>
+          <th scope="col">Editar</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+{% for professor in professor_list %}
+    <tr>
+        <th scope="row">{{ professor.id }}</th>
+        <td>{{ professor.usuario_professor.first_name }} {{ professor.usuario_professor.last_name }}</td>
+        <td>
+            <a href="{% url 'update_professor' professor.id %}" class="btn btn-outline-warning btn-sm">
+                <i class="fa-solid fa-pencil"></i>
+            </a> 
+            <a href="{% url 'delete_professor' professor.id %}" class="btn btn-outline-danger btn-sm">
+                <i class="fa-solid fa-trash"></i>
+            </a>
+        </td>
+    </tr>
+ {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
