@@ -1,0 +1,42 @@
+{% extends 'base_interface.html' %}
+{% block title %}
+Gerenciar Alunos
+{% endblock %}
+
+{% block sidebar %}
+{% include 'adm_sidebar.html' %}
+{% endblock %}
+
+{% block content %}
+<h1>Gerenciar Alunos</h1>
+<table class="table table-dark table-striped" style="width: 100%;">
+    <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nome</th>
+          <th>Usuário</th>
+          <th>Empresa</th>
+          <th scope="col">Editar</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+{% for aluno in aluno_list %}
+    <tr>
+        <th scope="row">{{ aluno.id }}</th>
+        <td>{{ aluno.usuario_aluno.first_name }} {{ aluno.usuario_aluno.last_name }}</td>
+        <td>{{ aluno.usuario_aluno }}</td>
+        <td>{{ aluno.empresa_vinculada }}</td>
+        <td>
+            <a href="{% url 'update_aluno' aluno.id %}" class="btn btn-outline-warning btn-sm">
+                <i class="fa-solid fa-pencil"></i>
+            </a> 
+            <a href="{% url 'delete_aluno' aluno.id %}" class="btn btn-outline-danger btn-sm">
+                <i class="fa-solid fa-trash"></i>
+            </a>
+        </td>
+    </tr>
+ {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

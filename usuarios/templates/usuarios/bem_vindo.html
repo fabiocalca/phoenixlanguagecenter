@@ -1,0 +1,42 @@
+{% extends 'base_interface.html' %}
+{% block title %} Bem vindo {% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card border-0 shadow rounded-3 my-5">
+          <div class="card-body p-4 p-sm-5">
+            <p>Seja bem vindo, {{ user.first_name }}!</p>
+            <p>Selecione abaixo o tipo de login que você deseja acessar:</p>
+            <ul class="navbar-nav">
+              {% if user.is_staff %}
+              <li class="nav-item">
+                <a class="nav-link btn" style="color:white; background-color: blue;" href="{% url 'adm_index' %}">Área Administrativa</a>
+              </li>
+              {% endif %}
+      
+              {% if user.eh_empresa %}
+              <li class="nav-item">
+                <a class="nav-link btn" style="color:white; background-color: green;" href="#">Área da Empresa</a>
+              </li>
+              {% endif %}
+              
+              {% if user.eh_professor %}
+              <li class="nav-item">
+                <a class="nav-link btn" style="color:white; background-color: purple;" href="{% url 'professor_index' %}">Área do Professor</a>
+              </li>
+              {% endif %}
+              
+              {% if user.eh_aluno %}
+              <li class="nav-item">
+                <a class="nav-link btn" style="color:white; background-color: red;" href="{% url 'alunos_index' %}">Área do Aluno</a>
+              </li>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+<a class="btn btn-primary" href="{% url 'logout' %}">Fazer Logout</a>
+{% endblock %}

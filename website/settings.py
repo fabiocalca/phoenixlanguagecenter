@@ -136,8 +136,13 @@ AUTH_USER_MODEL = 'usuarios.Usuario'
 
 LOGIN_URL = '../usuarios/login'
 
-LOGIN_REDIRECT_URL = 'index'
+LOGIN_REDIRECT_URL = 'bem_vindo'
 
-EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+LOGOUT_REDIRECT_URL = 'index'
 
-EMAIL_FILE_PATH = BASE_DIR / "sent_emails"
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_USE_TLS = True  
+EMAIL_HOST = 'smtp.gmail.com'  
+EMAIL_PORT = 587  
+EMAIL_HOST_USER = '*'  
+EMAIL_HOST_PASSWORD = '*'  

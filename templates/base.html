@@ -1,4 +1,4 @@
-
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,12 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %} {% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #ecb358;">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#"><img src="" alt=""> Navbar</a>
+          <a class="navbar-brand" href="#"><img src="" alt="">Phoenix Language Center</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -23,21 +24,88 @@
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'about' %}">Sobre</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'about' %}">Equipe</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Parceiros</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Contatos</a>
+              </li>
               {% if user.is_authenticated %}
               <li class="nav-item">
-                <a class="nav-link" href="#">Logado como {{ user.username }}</a>
+                <a class="nav-link" href="{% url 'logout' %}">Logado como {{ user.username }}</a>
               </li>
               {% else %}
               <li class="nav-item">
-                <a class="nav-link" href="#">Login</a>
+                <a class="nav-link" href="{% url 'login' %}">Login</a>
               </li>
               {% endif %}
+            </ul>
+            <ul class="navbar-nav ml-auto">
+              <a target="_blank" href="https://www.facebook.com/atendimentophoenixlanguagecenter" class="nav-item nav-link"><i class="fa fa-facebook"></i></a>
+              <a target="_blank" href="https://wa.me/5519998729590" class="nav-item nav-link"><i class="fa fa-whatsapp"></i></a>
+              <a target="_blank" href="https://www.linkedin.com/company/phoenix-language-center-byteachercarla" class="nav-item nav-link"><i class="fa fa-linkedin"></i></a>
+              <a target="_blank" href="https://www.instagram.com/phoenixlanguage.center/" class="nav-item nav-link"><i class="fa fa-instagram"></i></a>
             </ul>
           </div>
         </div>
     </nav>
     {% block content %}
     {% endblock %}
+    <footer class="bg-light text-center text-white">
+      <!-- Grid container -->
+      <div class="container p-4 pb-0">
+        <!-- Section: Social media -->
+        <section class="mb-4">
+          <!-- Facebook -->
+          <a
+            class="btn text-white btn-floating m-1"
+            style="background-color: #3b5998;"
+            href="https://www.facebook.com/atendimentophoenixlanguagecenter"
+            role="button"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+          <!-- WhatsApp -->
+          <a
+            class="btn text-white btn-floating m-1"
+            style="background-color: #25D366;"
+            href="https://wa.me/5519998729590"
+            role="button"
+            ><i class="fab fa-whatsapp"></i
+          ></a>
+    
+          <!-- Instagram -->
+          <a
+            class="btn text-white btn-floating m-1"
+            style="background-color: #ac2bac;"
+            href="https://www.instagram.com/phoenixlanguage.center/"
+            role="button"
+            ><i class="fab fa-instagram"></i
+          ></a>
+    
+          <!-- Linkedin -->
+          <a
+            class="btn text-white btn-floating m-1"
+            style="background-color: #0082ca;"
+            href="https://www.linkedin.com/company/phoenix-language-center-byteachercarla"
+            role="button"
+            ><i class="fab fa-linkedin-in"></i
+          ></a>
+          
+        <!-- Section: Social media -->
+      </div>
+      <!-- Grid container -->
+    
+      <!-- Copyright -->
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2022 Copyright:
+        Phoenix Language Center by Teacher Carla
+      </div>
+      <!-- Copyright -->
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-</body>
+    <script src="https://kit.fontawesome.com/5445411d6c.js" crossorigin="anonymous"></script>
+    </body>
 </html>

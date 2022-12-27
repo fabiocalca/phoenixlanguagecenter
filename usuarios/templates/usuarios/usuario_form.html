@@ -11,7 +11,7 @@ Adicionar Usuário
 <h1>Adicionar Usuário</h1>
 
 <form style="width:100%;" method="post">{% csrf_token %}
-    <div class="d-flex align-items-end flex-column">
+    <div>
     {{ form.as_p }}
     <input type="submit" value="Salvar">
 </div>
