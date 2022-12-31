@@ -1,0 +1,17 @@
+{% extends 'base_interface.html' %}
+{% block title %}
+Adicionar Aula
+{% endblock %}
+
+{% block sidebar %}
+{% include 'professores_sidebar.html' %}
+{% endblock %}
+
+{% block content %}
+<h1>Adicionar Aula</h1>
+
+<form method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Salvar">
+</form>
+{% endblock %}

@@ -2,7 +2,7 @@ from django.shortcuts import render
 from .forms import AulaCreateForm
 from .models import Aula
 from django.views.generic.list import ListView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse
 # Create your views here.
 def index(request):
@@ -25,9 +25,12 @@ class AulaListView(ListView):
     def get_queryset(self):
         return super().get_queryset().filter(professor=self.request.user.professor)
 
-'''
-def create_aula(request):
-    professor = Professor.objects.filter(usuario_professor=request.user)
-    cursos = Curso.objects.filter(professor_do_curso=professor)
-    return render(request, 'professores/aulas.html', context={'professores':professor})
-'''
+class AulaUpdateView(UpdateView):
+    model = Aula
+    fields = ['titulo', 'curso', 'presente', 'data']
+    success_url = "/professores/aulas"
+
+class AulaDeleteView(DeleteView):
+    model = Aula
+    success_url = "/professores/aulas"
+    template_name = "professores/aula_delete_confirm.html"

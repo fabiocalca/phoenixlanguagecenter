@@ -8,13 +8,12 @@ Gerenciar Presença
 {% endblock %}
 
 {% block content %}
-<h1>Gerenciar Cursos</h1>
+<h1>Gerenciar Aulas</h1>
 <table class="table table-dark table-striped" style="width: 100%;">
     <thead>
         <tr>
           <th scope="col">Curso</th>
           <th scope="col">Data</th>
-          <th scope="col">Professor</th>
           <th scope="col">Presente?</th>
           <th scope="col">Editar</th>
         </tr>
@@ -26,7 +25,13 @@ Gerenciar Presença
         <td>{{ aula.curso }}</td>
         <td>{{ aula.data }}</td>
         <td>{% if aula.presente %}<i class="fa-solid fa-check"></i> {% else %} <i class="fa-solid fa-x"></i>{% endif %}</td>
-        <td>editar</td>
+        <td>
+          <a href="{% url 'update_aula' aula.id %}" class="btn btn-outline-warning btn-sm">
+            <i class="fa-solid fa-pencil"></i>
+        </a> 
+        <a href="{% url 'delete_aula' aula.id %}" class="btn btn-outline-danger btn-sm">
+            <i class="fa-solid fa-trash"></i>
+        </td>
     </tr>
  {% endfor %}
     </tbody>
