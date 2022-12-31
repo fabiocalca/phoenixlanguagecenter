@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .forms import AulaCreateForm
 from .models import Aula
 from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse
 # Create your views here.
@@ -34,3 +35,6 @@ class AulaDeleteView(DeleteView):
     model = Aula
     success_url = "/professores/aulas"
     template_name = "professores/aula_delete_confirm.html"
+
+class AulaDetailView(DetailView):
+    model = Aula

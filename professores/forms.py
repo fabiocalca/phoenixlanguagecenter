@@ -5,7 +5,7 @@ from usuarios.models import Professor
 class AulaCreateForm(ModelForm):
     class Meta:
        model = Aula
-       fields = ['titulo', 'curso', 'professor', 'presente', 'data']
+       fields = ['titulo', 'descricao', 'curso', 'professor', 'presente', 'data']
     
     def __init__(self, *args, **kwargs):
        user = kwargs.pop('user')

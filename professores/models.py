@@ -8,6 +8,7 @@ import adm.models
 class Aula(models.Model):
     id = models.AutoField(primary_key=True)
     titulo = models.CharField(max_length=255, default='Título da Aula')
+    descricao = models.TextField(verbose_name="Descrição", max_length=500, default='Descricao')
     curso = models.ForeignKey('adm.Curso', on_delete=models.CASCADE)
     professor = models.ForeignKey(Professor, on_delete=models.DO_NOTHING, default=None)
     presente = models.BooleanField(default=False)

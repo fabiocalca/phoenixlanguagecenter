@@ -14,6 +14,7 @@ Gerenciar Presença
         <tr>
           <th scope="col">Curso</th>
           <th scope="col">Data</th>
+          <th scope="col">Descrição</th>
           <th scope="col">Presente?</th>
           <th scope="col">Editar</th>
         </tr>
@@ -24,6 +25,7 @@ Gerenciar Presença
     <tr>
         <td>{{ aula.curso }}</td>
         <td>{{ aula.data }}</td>
+        <td><a href="{% url 'descricao_aula' aula.id %}">Ver</a></td>
         <td>{% if aula.presente %}<i class="fa-solid fa-check"></i> {% else %} <i class="fa-solid fa-x"></i>{% endif %}</td>
         <td>
           <a href="{% url 'update_aula' aula.id %}" class="btn btn-outline-warning btn-sm">

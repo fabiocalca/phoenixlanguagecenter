@@ -1,0 +1,14 @@
+{% extends 'base_interface.html' %}
+{% block title %}
+Descrição da Aula
+{% endblock %}
+
+{% block sidebar %}
+{% include 'professores_sidebar.html' %}
+{% endblock %}
+
+{% block content %}
+<h1>Aula {{ object.titulo }}</h1>
+
+<p>{{ object.descricao }}</p>
+{% endblock %}
