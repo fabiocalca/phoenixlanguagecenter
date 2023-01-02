@@ -31,6 +31,8 @@ class Empresa(models.Model):
         return self.nome
 
 class Aluno(models.Model):
+    class Meta:
+        ordering = ['usuario_aluno__first_name', 'usuario_aluno__last_name']
     id = models.AutoField(primary_key=True)
     usuario_aluno = models.OneToOneField(Usuario, on_delete=models.CASCADE)
     empresa_vinculada = models.ForeignKey(Empresa, on_delete=models.SET_NULL, null=True)
