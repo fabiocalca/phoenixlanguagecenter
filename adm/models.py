@@ -3,6 +3,8 @@ from usuarios.models import Aluno, Professor
 from website import settings
 from django.db.models import F, Sum
 from professores.models import Aula
+from sortedm2m.fields import SortedManyToManyField
+
 class Idioma(models.Model):
     id = models.AutoField(primary_key=True)
     idioma = models.CharField(max_length=30)
@@ -15,7 +17,7 @@ class Curso(models.Model):
     ativo = models.BooleanField(default=True)
     idioma_do_curso = models.ForeignKey(Idioma, on_delete=models.CASCADE)
     professor_do_curso = models.ForeignKey(Professor, on_delete=models.SET_NULL, null=True)
-    alunos_do_curso = models.ManyToManyField(Aluno)
+    alunos_do_curso = SortedManyToManyField(Aluno)
     aulas_dadas = models.IntegerField(default=0)
     presenca = models.IntegerField(default=0)
     aulas_restantes = models.IntegerField(default=0)

@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'sortedm2m',
     'usuarios.apps.UsuariosConfig',
     'staticpages.apps.StaticpagesConfig',
     'adm',
