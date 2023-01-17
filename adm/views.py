@@ -5,7 +5,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Curso, Pagamento, Idioma
 from professores.models import Aula
 from usuarios.models import Usuario, Empresa, Aluno, Professor
-
+from .forms import CursoCreateForm
 def index(request):
     context = {}
     return render(request, 'adm/index.html', context)
@@ -20,7 +20,7 @@ class AulaListView(ListView):
 # Cursos
 class CursoCreateView(CreateView):
     model = Curso
-    fields = ['curso', 'ativo', 'idioma_do_curso', 'professor_do_curso', 'alunos_do_curso']
+    form_class = CursoCreateForm
     def get_success_url(self):
         return reverse('cursos')
 
