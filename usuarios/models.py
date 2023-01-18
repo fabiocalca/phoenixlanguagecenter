@@ -20,8 +20,6 @@ class Professor(models.Model):
     def __str__(self):
         return self.usuario_professor.first_name
 
-
-
 class Empresa(models.Model):
     id = models.AutoField(primary_key=True)
     usuario_empresa = models.OneToOneField(Usuario, on_delete=models.CASCADE)

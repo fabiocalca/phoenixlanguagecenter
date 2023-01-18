@@ -5,7 +5,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Curso, Pagamento, Idioma
 from professores.models import Aula
 from usuarios.models import Usuario, Empresa, Aluno, Professor
-from .forms import CursoCreateForm
+from .forms import CursoCreateForm, IdiomaCreateForm, PagamentoCreateForm, ProfessorCreateForm, AlunoCreateForm, UsuarioCreateForm, EmpresaCreateForm
 def index(request):
     context = {}
     return render(request, 'adm/index.html', context)
@@ -78,13 +78,13 @@ class IdiomaListView(ListView):
 
 class IdiomaCreateView(CreateView):
     model = Idioma
-    fields = ['idioma']
+    form_class = IdiomaCreateForm
     def get_success_url(self):
         return reverse('idiomas')
 
 class IdiomaUpdateView(UpdateView):
     model = Idioma
-    fields = ['idioma']
+    form_class = IdiomaCreateForm
     success_url = "/adm/idiomas/"
 
 class IdiomaDeleteView(DeleteView):
@@ -103,13 +103,13 @@ class UsuarioListView(ListView):
 
 class UsuarioCreateView(CreateView):
     model = Usuario
-    fields = ['first_name', 'last_name', 'username', 'password', 'email', 'telefone','data_de_nascimento', 'telefone', 'eh_aluno','eh_professor','eh_empresa']
+    form_class = UsuarioCreateForm
     def get_success_url(self):
         return reverse('adm_index')
 
 class UsuarioUpdateView(UpdateView):
     model = Usuario
-    fields = ['first_name', 'last_name', 'username', 'password', 'email', 'telefone','data_de_nascimento', 'telefone', 'eh_aluno','eh_professor','eh_empresa']
+    form_class = UsuarioCreateForm
     success_url = "/adm/usuarios/"
 
 class UsuarioDeleteView(DeleteView):
@@ -124,13 +124,13 @@ class EmpresaListView(ListView):
 
 class EmpresaCreateView(CreateView):
     model = Empresa
-    fields = ['usuario_empresa', 'nome', 'contrato_ativo']
+    form_class = EmpresaCreateForm
     def get_success_url(self):
         return reverse('adm_index')
 
 class EmpresaUpdateView(UpdateView):
     model = Empresa
-    fields = ['usuario_empresa', 'nome', 'contrato_ativo']
+    form_class = EmpresaCreateForm
     success_url = "/adm/empresas/"
 
 class EmpresaDeleteView(DeleteView):
@@ -145,13 +145,13 @@ class ProfessorListView(ListView):
 
 class ProfessorCreateView(CreateView):
     model = Professor
-    fields = ['usuario_professor','ativo','descricao']
+    form_class = ProfessorCreateForm
     def get_success_url(self):
         return reverse('adm_index')
 
 class ProfessorUpdateView(UpdateView):
     model = Professor
-    fields = ['usuario_professor','ativo','descricao']
+    form_class = ProfessorCreateForm
     success_url = "/adm/professores/"
 
 class ProfessorDeleteView(DeleteView):
@@ -166,13 +166,13 @@ class AlunoListView(ListView):
 
 class AlunoCreateView(CreateView):
     model = Aluno
-    fields = ['usuario_aluno', 'empresa_vinculada']
+    form_class = AlunoCreateForm
     def get_success_url(self):
         return reverse('adm_index')
 
 class AlunoUpdateView(UpdateView):
     model = Aluno
-    fields = ['usuario_aluno', 'empresa_vinculada']
+    form_class = AlunoCreateForm
     success_url = "/adm/alunos/"
 
 class AlunoDeleteView(DeleteView):
