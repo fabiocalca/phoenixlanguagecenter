@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.urls import reverse
 from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Curso, Pagamento, Idioma
 from professores.models import Aula
@@ -17,6 +18,9 @@ class AulaListView(ListView):
         ordering = self.request.GET.get('ordering', '-data')
         return ordering
 
+class AulaDetailView(DetailView):
+    model = Aula
+    template_name = 'adm/aula_detail.html'
 # Cursos
 class CursoCreateView(CreateView):
     model = Curso
@@ -33,7 +37,7 @@ class CursoListView(ListView):
 
 class CursoUpdateView(UpdateView):
     model = Curso
-    fields = ['curso', 'ativo', 'idioma_do_curso', 'professor_do_curso', 'alunos_do_curso']
+    form_class = CursoCreateForm
     success_url = "/adm/cursos/"
 
 class CursoDeleteView(DeleteView):
@@ -44,7 +48,7 @@ class CursoDeleteView(DeleteView):
 # Pagamentos
 class PagamentoCreateView(CreateView):
     model = Pagamento
-    fields = ['curso','valor', 'pago', 'aulas_no_pacote']
+    form_class = PagamentoCreateForm
     def get_success_url(self):
         return reverse('pagamentos')
 
@@ -58,7 +62,7 @@ class PagamentoListView(ListView):
 
 class PagamentoUpdateView(UpdateView):
     model = Pagamento
-    fields = ['curso','valor', 'pago']
+    form_class = PagamentoCreateForm
     success_url = "/adm/pagamentos/"
 
 class PagamentoDeleteView(DeleteView):

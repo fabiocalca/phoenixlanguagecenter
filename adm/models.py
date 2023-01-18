@@ -19,6 +19,7 @@ class Curso(models.Model):
     professor_do_curso = models.ForeignKey(Professor, on_delete=models.SET_NULL, null=True)
     alunos_do_curso = SortedManyToManyField(Aluno)
     aulas_dadas = models.IntegerField(default=0)
+    aulas_pagas = models.IntegerField(default=0)
     presenca = models.IntegerField(default=0)
     aulas_restantes = models.IntegerField(default=0)
     def __str__(self):
@@ -32,11 +33,12 @@ class Pagamento(models.Model):
     aulas_no_pacote = models.IntegerField(default=0)
     data = models.DateField(auto_now_add=True, blank=True)
     def save(self, *args, **kwargs):
-        aulas_pagas = Pagamento.objects.filter(pago=True).aggregate(total=Sum('aulas_no_pacote')).get('total',0)
+        super().save(*args, **kwargs)
+        aulas_pagas = Pagamento.objects.filter(curso=self.curso, pago=True).aggregate(total=Sum('aulas_no_pacote')).get('total',0)
         if not aulas_pagas:
             aulas_pagas = 0
         aulas_dadas = Aula.objects.filter(curso=self.curso).count()
         Curso.objects.filter(id=self.curso.id).update(aulas_restantes=aulas_pagas-aulas_dadas)
-        super().save(*args, **kwargs)
+        
     def __str__(self):
         return ('#' + str(self.id) + ' ' + self.curso.curso)

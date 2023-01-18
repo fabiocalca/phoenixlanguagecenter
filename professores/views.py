@@ -5,6 +5,7 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse
+import adm.models
 # Create your views here.
 def index(request):
     return render(request,'professores/index.html', context={})
@@ -38,3 +39,13 @@ class AulaDeleteView(DeleteView):
 
 class AulaDetailView(DetailView):
     model = Aula
+    def get_queryset(self):
+        qs = super(AulaDetailView, self).get_queryset()
+        return qs.filter(professor=self.request.user.professor)
+
+class CursoListView(ListView):
+    model = adm.models.Curso
+    context_object_name = 'curso_list'
+    template_name = 'professores/curso_list.html'
+    def get_queryset(self):
+        return super().get_queryset().filter(professor_do_curso=self.request.user.professor)

@@ -15,6 +15,7 @@ Ver Presença
           <th scope="col">#</th>
           <th scope="col">Curso</th>
           <th scope="col">Professor</th>
+          <th scope="col">Descrição</th>
           <th scope="col">Data</th>
           <th scope="col">Presente?</th>
         </tr>
@@ -25,8 +26,9 @@ Ver Presença
     <tr>
         <th scope="row"> {{ aula.id }}</th>
         <td>{{ aula.curso }}</td>
-        <td>{{ aula.data }}</td>
         <td>{{ aula.professor.usuario_professor.first_name }}</td>
+        <td><a href="{% url 'adm_descricao_aula' aula.id %}">Ver</a></td>
+        <td>{{ aula.data }}</td>
         <td class="text-center">{% if aula.presente %} <i class="fa-solid fa-check"></i> {% else %} <i class="fa-solid fa-x"></i>{% endif %}</td>
     </tr>
  {% endfor %}

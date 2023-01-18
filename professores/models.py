@@ -14,7 +14,10 @@ class Aula(models.Model):
     presente = models.BooleanField(default=False)
     data = models.DateTimeField(default=django.utils.timezone.now)
     def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
         aulas_pagas = adm.models.Pagamento.objects.filter(curso=self.curso,pago=True).aggregate(total=Sum('aulas_no_pacote')).get('total',0)
+        if not aulas_pagas:
+            aulas_pagas = 0
         aulas_dadas = Aula.objects.filter(curso=self.curso).count()
         presenca = Aula.objects.filter(curso=self.curso, presente=True).count()
         adm.models.Curso.objects.filter(id=self.curso.id).update(aulas_restantes=aulas_pagas-aulas_dadas, presenca=presenca, aulas_dadas=aulas_dadas)

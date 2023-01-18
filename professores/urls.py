@@ -9,4 +9,5 @@ urlpatterns = [
     path('<pk>/update_aula', professor_required(views.AulaUpdateView.as_view()), name='update_aula'),
     path('<pk>/delete_aula', professor_required(views.AulaDeleteView.as_view()), name='delete_aula'),
     path('<pk>/descricao_aula', professor_required(views.AulaDetailView.as_view()), name='descricao_aula'),
+    path('cursos',professor_required(views.CursoListView.as_view()), name='professor_cursos')
 ]

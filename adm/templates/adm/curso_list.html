@@ -29,7 +29,7 @@ Adicionar curso
         <td>{{ curso.curso }}</td>
         <td>{{ curso.professor_do_curso.usuario_professor.first_name }}</td>
         <td>{{ curso.aulas_dadas }}</td>
-        <td>{{ curso.aulas_restantes }}</td>
+        <td class="{% if curso.aulas_restantes < 0 %} text-danger {% elif curso.aulas_restantes == 0 %} text-warning {% else %} text-success {% endif %}">{{ curso.aulas_restantes }}</td>
         <td>
           <a href="{% url 'update' curso.id %}" class="btn btn-outline-warning btn-sm">
             <i class="fa-solid fa-pencil"></i>
