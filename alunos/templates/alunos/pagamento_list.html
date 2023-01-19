@@ -15,6 +15,7 @@ Gerenciar Pagamentos
           <th scope="col">#</th>
           <th scope="col">Curso</th>
           <th scope="col">Professor</th>
+          <th scope="col">Data</th>
           <th scope="col">Pago?</th>
         </tr>
       </thead>
@@ -25,6 +26,7 @@ Gerenciar Pagamentos
         <th scope="row">{{ pagamento.id }}</th>
         <td>{{ pagamento.curso.curso }}</td>
         <td>{{ pagamento.curso.professor_do_curso.usuario_professor.first_name }}</td>
+        <td>{{ pagamento.data }}</td>
         <td>{% if pagamento.pago %}<i class="fa-solid fa-check"></i> {% else %} <i class="fa-solid fa-x"></i>{% endif %}</td>
     </tr>
  {% endfor %}

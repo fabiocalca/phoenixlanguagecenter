@@ -4,7 +4,7 @@ from django.contrib.auth.models import AbstractUser
 class Usuario(AbstractUser):
     id = models.AutoField(primary_key=True)
     telefone = models.CharField(max_length=15, blank=True)
-    endereco = models.CharField(max_length=30, blank=True)
+    endereco = models.CharField(max_length=30, blank=True, verbose_name="Endereço")
     data_de_nascimento = models.DateField(null=True, blank=True)
     eh_aluno = models.BooleanField(default=False, verbose_name="Aluno")
     eh_professor = models.BooleanField(default=False, verbose_name="Professor")

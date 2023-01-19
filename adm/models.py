@@ -29,6 +29,7 @@ class Pagamento(models.Model):
     id = models.AutoField(primary_key=True)
     curso = models.ForeignKey(Curso, on_delete=models.DO_NOTHING)
     pago = models.BooleanField(default=False)
+    nota_fiscal = models.BooleanField(default=False)
     valor = models.DecimalField(decimal_places=2, max_digits=6)
     aulas_no_pacote = models.IntegerField(default=0)
     data = models.DateField(auto_now_add=True, blank=True)
