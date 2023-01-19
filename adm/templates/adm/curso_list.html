@@ -25,7 +25,7 @@ Adicionar curso
         
 {% for curso in curso_list %}
     <tr>
-        <th scope="row">1</th>
+        <th scope="row">{{ curso.id }}</th>
         <td>{{ curso.curso }}</td>
         <td>{{ curso.professor_do_curso.usuario_professor.first_name }}</td>
         <td>{{ curso.aulas_dadas }}</td>

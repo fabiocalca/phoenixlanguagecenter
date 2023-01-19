@@ -19,23 +19,23 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Home</a>
+                <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="{% url 'index' %}">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'about' %}">Sobre</a>
+                <a class="nav-link {% if request.path == '/about/' %}active{% endif %}" href="{% url 'about' %}">Sobre</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'about' %}">Equipe</a>
+                <a class="nav-link {% if request.path == '/equipe/' %}active{% endif %}" href="{% url 'equipe' %}">Equipe</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Parceiros</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Contatos</a>
+                <a class="nav-link" href="#">Contato</a>
               </li>
               {% if user.is_authenticated %}
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'logout' %}">Logado como {{ user.username }}</a>
+                <a class="nav-link" href="{% url 'logout' %}">Logado como {{ user.username }} (logout)</a>
               </li>
               {% else %}
               <li class="nav-item">
@@ -48,6 +48,11 @@
               <a target="_blank" href="https://wa.me/5519998729590" class="nav-item nav-link"><i class="fa fa-whatsapp"></i></a>
               <a target="_blank" href="https://www.linkedin.com/company/phoenix-language-center-byteachercarla" class="nav-item nav-link"><i class="fa fa-linkedin"></i></a>
               <a target="_blank" href="https://www.instagram.com/phoenixlanguage.center/" class="nav-item nav-link"><i class="fa fa-instagram"></i></a>
+              {% if user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link btn btn-sm btn-outline-success" href="{% url 'bem_vindo' %}">Entrar na plataforma</a>
+              </li>
+              {% endif %}
             </ul>
           </div>
         </div>
