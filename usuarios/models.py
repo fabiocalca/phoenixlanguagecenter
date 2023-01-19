@@ -6,9 +6,9 @@ class Usuario(AbstractUser):
     telefone = models.CharField(max_length=15, blank=True)
     endereco = models.CharField(max_length=30, blank=True)
     data_de_nascimento = models.DateField(null=True, blank=True)
-    eh_aluno = models.BooleanField(default=False)
-    eh_professor = models.BooleanField(default=False)
-    eh_empresa = models.BooleanField(default=False)
+    eh_aluno = models.BooleanField(default=False, verbose_name="Aluno")
+    eh_professor = models.BooleanField(default=False, verbose_name="Professor")
+    eh_empresa = models.BooleanField(default=False, verbose_name="Empresa")
 
 class Professor(models.Model):
     class Meta:

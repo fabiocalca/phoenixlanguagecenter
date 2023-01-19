@@ -9,6 +9,11 @@ Adicionar curso
 
 {% block content %}
 <h1>Gerenciar Cursos</h1>
+<form class="p-1" action="?" method="get">
+  <input type="text" name="nome" id="" value="{{ request.GET.nome }}" >
+  <button class="btn btn-sm btn-success" type="submit">Buscar</button>
+  <a class="btn btn-sm btn-light" href="{% url 'cursos' %}">Limpar</a>
+</form>
 <a class='btn btn-primary' href="{% url 'add_curso' %}"><i class="fa-solid fa-plus"></i> Adicionar</a>
 <table class="table table-dark table-striped" style="width: 100%;">
     <thead>

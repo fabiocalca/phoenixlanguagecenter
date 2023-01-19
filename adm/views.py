@@ -18,9 +18,19 @@ class AulaListView(ListView):
         ordering = self.request.GET.get('ordering', '-data')
         return ordering
 
+    def get_queryset(self):
+        cursos = self.request.GET.get('nome')
+        if cursos:
+            qs = Aula.objects.filter(curso__curso__icontains=cursos)
+        else:
+            qs = Aula.objects.all()
+        return qs
+    
+
 class AulaDetailView(DetailView):
     model = Aula
     template_name = 'adm/aula_detail.html'
+
 # Cursos
 class CursoCreateView(CreateView):
     model = Curso
@@ -34,6 +44,13 @@ class CursoListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
+    def get_queryset(self):
+        cursos = self.request.GET.get('nome')
+        if cursos:
+            qs = Curso.objects.filter(curso__icontains=cursos)
+        else:
+            qs = Curso.objects.all()
+        return qs
 
 class CursoUpdateView(UpdateView):
     model = Curso
