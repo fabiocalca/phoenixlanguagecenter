@@ -19,6 +19,7 @@ Gerenciar Pagamentos
           <th>Aulas</th>
           <th scope="col">Data</th>
           <th scope="col">Pago?</th>
+          <th scope="col">Nota Fiscal?</th>
           <th scope="col">Editar</th>
         </tr>
       </thead>
@@ -32,6 +33,7 @@ Gerenciar Pagamentos
         <td>{{ pagamento.aulas_no_pacote }}</td>
         <td>{{ pagamento.data }}</td>
         <td class="text-center">{% if pagamento.pago %} <i class="fa-solid fa-check"></i> {% else %} <i class="fa-solid fa-x"></i>{% endif %}</td>
+        <td>{% if pagamento.nota_fiscal %}<i class="fa-solid fa-check"></i> {% else %} <i class="fa-solid fa-x"></i>{% endif %}</td>
         <td>
           <a href="{% url 'update_pagamento' pagamento.id %}" class="btn btn-outline-warning btn-sm">
             <i class="fa-solid fa-pencil"></i>

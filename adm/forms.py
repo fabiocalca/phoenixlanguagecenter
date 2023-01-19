@@ -13,7 +13,7 @@ class CursoCreateForm(ModelForm):
 class PagamentoCreateForm(ModelForm):
    class Meta:
       model = Pagamento
-      fields = ['curso','valor', 'pago', 'aulas_no_pacote']
+      fields = ['curso','valor', 'pago', 'nota_fiscal','aulas_no_pacote']
    curso = forms.ModelChoiceField(queryset=Curso.objects.all().order_by('curso'))
 class IdiomaCreateForm(ModelForm):
    class Meta:
