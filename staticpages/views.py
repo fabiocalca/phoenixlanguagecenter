@@ -1,4 +1,7 @@
-from django.shortcuts import render
+from django.core.mail import send_mail, BadHeaderError
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render, redirect
+from .forms import ContactForm
 from django.urls import reverse
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
@@ -11,6 +14,22 @@ def index(request):
 def about(request):
     context = {}
     return render(request, 'staticpages/about.html', context)
+
+def contactView(request):
+    if request.method == "GET":
+        form = ContactForm()
+    else:
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            subject = form.cleaned_data["first_name"]
+            from_email = form.cleaned_data["email"]
+            message = form.cleaned_data['message']
+            try:
+                send_mail(subject, message, from_email, ["fabiocalcacarvalho@usp.br"])
+            except BadHeaderError:
+                return HttpResponse("Invalid header found.")
+            return redirect("success")
+    return render(request, "staticpages/contact.html", {"form": form})
 
 class EquipeListView(ListView):
     model = Equipe
