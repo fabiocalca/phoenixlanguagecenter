@@ -137,7 +137,7 @@ AUTH_USER_MODEL = 'usuarios.Usuario'
 
 LOGIN_URL = '../usuarios/login'
 
-LOGIN_REDIRECT_URL = 'bem_vindo'
+LOGIN_REDIRECT_URL = 'index'
 
 LOGOUT_REDIRECT_URL = 'index'
 
