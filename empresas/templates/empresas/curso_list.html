@@ -1,0 +1,35 @@
+{% extends 'base_interface.html' %}
+{% block title %}
+Ver cursos
+{% endblock %}
+
+{% block sidebar %}
+{% include 'empresas_sidebar.html' %}
+{% endblock %}
+
+{% block content %}
+<h1>Ver Cursos</h1>
+<div class="table-responsive-xxl">
+<table class="table table-dark table-striped align-middle" style="width: 100%;">
+    <thead>
+        <tr>
+            <th scope="col">Curso</th>
+            <th scope="col">Professor</th>
+            <th scope="col">Aulas registradas</th>
+            <th scope="col">Aulas restantes no pacote</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+{% for curso in curso_list %}
+    <tr>
+        <td>{{ curso.curso }}</td>
+        <td>{{ curso.professor_do_curso.usuario_professor.first_name }}</td>
+        <td>{{ curso.aulas_dadas }}</td>
+        <td class="{% if curso.aulas_restantes < 0 %} text-danger {% elif curso.aulas_restantes == 0 %} text-warning {% else %} text-success {% endif %}">{{ curso.aulas_restantes }}</td>
+    </tr>
+ {% endfor %}
+    </tbody>
+</table>
+</div>
+{% endblock %}

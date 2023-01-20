@@ -8,7 +8,14 @@ from professores.models import Aula
 from usuarios.models import Usuario, Empresa, Aluno, Professor
 from .forms import CursoCreateForm, IdiomaCreateForm, PagamentoCreateForm, ProfessorCreateForm, AlunoCreateForm, UsuarioCreateForm, EmpresaCreateForm
 def index(request):
-    context = {}
+    alunos = Aluno.objects.all().count()
+    cursos = Curso.objects.all().count()
+    professores = Professor.objects.all().count()
+    aulas = Aula.objects.all().count()
+    context = {'alunos': alunos,
+    'cursos': cursos,
+    'professores': professores,
+    'aulas': aulas}
     return render(request, 'adm/index.html', context)
 class AulaListView(ListView):
     model = Aula

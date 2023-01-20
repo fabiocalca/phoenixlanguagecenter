@@ -9,5 +9,37 @@
 
 {% block content %}
 <h1>Home</h1>
-<h5>{{ num }}</h5>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card-counter primary">
+                <i class="fa fa-graduation-cap"></i>
+                <span class="count-numbers">{{ alunos }}</span>
+                <span class="count-name">Alunos</span>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card-counter danger">
+                <i class="fa fa-book"></i>
+                <span class="count-numbers">{{ cursos }}</span>
+                <span class="count-name">Cursos</span>
+            </div>
+          </div>
+      
+        <div class="col-md-3">
+            <div class="card-counter success">
+                <i class="fa fa-user-tie"></i>
+                <span class="count-numbers">{{ professores }}</span>
+                <span class="count-name">Professores</span>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card-counter info">
+                <i class="fa fa-clipboard-user"></i>
+                <span class="count-numbers">{{ aulas }}</span>
+                <span class="count-name">Aulas Registradas</span>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
