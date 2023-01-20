@@ -14,7 +14,6 @@ Ver Cursos
     <thead>
         <tr>
             <th scope="col">Curso</th>
-            <th scope="col">Professor</th>
             <th scope="col">Aulas registradas</th>
             <th scope="col">Aulas restantes no pacote</th>
         </tr>
@@ -24,7 +23,6 @@ Ver Cursos
 {% for curso in curso_list %}
     <tr>
         <td>{{ curso.curso }}</td>
-        <td>{{ curso.professor_do_curso.usuario_professor.first_name }}</td>
         <td>{{ curso.aulas_dadas }}</td>
         <td class="{% if curso.aulas_restantes < 0 %} text-danger {% elif curso.aulas_restantes == 0 %} text-warning {% else %} text-success {% endif %}">{{ curso.aulas_restantes }}</td>
     </tr>

@@ -6,9 +6,16 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse
 import adm.models
+from usuarios.models import Aluno
 # Create your views here.
 def index(request):
-    return render(request,'professores/index.html', context={})
+    alunos = adm.models.Curso.objects.filter(professor_do_curso=request.user.professor).values_list('alunos_do_curso').distinct().count()
+    cursos = adm.models.Curso.objects.filter(professor_do_curso=request.user.professor).count()
+    aulas = Aula.objects.filter(professor=request.user.professor).count()
+    context = {'alunos': alunos,
+    'cursos': cursos,
+    'aulas': aulas}
+    return render(request,'professores/index.html', context)
 
 class AulaCreateView(CreateView):
     template_name = 'professores/create_aula.html'
