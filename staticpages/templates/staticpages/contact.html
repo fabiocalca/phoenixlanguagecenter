@@ -5,17 +5,13 @@ Contato
 {% endblock %}
 
 {% block content %}
+{% load crispy_forms_tags %}
+
 <h1>Entre em Contato</h1>
 <div class="container">
     <form method="post">
         {% csrf_token %}
-    {% for field in form %}
-    <div class="fieldWrapper">
-        {{ field.errors }}
-        {{ field.label_tag }}
-    </div>
-    <div>{{ field }}</div>
-    {% endfor %}
+        {{form|crispy}}
         <div class="form-actions">
             <button type="submit">Enviar</button>
         </div>

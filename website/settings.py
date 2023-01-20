@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'sortedm2m',
+    'crispy_forms',
     'usuarios.apps.UsuariosConfig',
     'staticpages.apps.StaticpagesConfig',
     'adm',
@@ -45,6 +46,8 @@ INSTALLED_APPS = [
     'professores.apps.ProfessoresConfig',
     'empresas.apps.EmpresasConfig',
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
